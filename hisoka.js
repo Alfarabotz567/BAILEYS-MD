@@ -104,7 +104,7 @@ module.exports = hisoka = async (hisoka, m, chatUpdate, store) => {
             if (typeof setting !== 'object') global.db.data.settings[botNumber] = {}
 	    if (setting) {
 		if (!isNumber(setting.status)) setting.status = 0
-		if (!('autobio' in setting)) setting.autobio = false
+		if (!('autobio' in setting)) setting.autobio = true
 		if (!('templateImage' in setting)) setting.templateImage = true
 		if (!('templateVideo' in setting)) setting.templateVideo = false
 		if (!('templateGif' in setting)) setting.templateGif = false
@@ -112,7 +112,7 @@ module.exports = hisoka = async (hisoka, m, chatUpdate, store) => {
 		if (!('templateLocation' in setting)) setting.templateLocation = false
 	    } else global.db.data.settings[botNumber] = {
 		status: 0,
-		autobio: false,
+		autobio: true,
 		templateImage: true,
 		templateVideo: false,
 		templateGif: false,
@@ -1665,6 +1665,20 @@ let buttons = [
                 hisoka.sendMessage(m.chat, buttonMessage, { quoted: m })
             }
             break
+            
+            case 'jadibot': {
+            m.reply('sedang membuat QR...')
+          hisoka.sendMessage(m.chat, { image: { url: 'https://telegra.ph/file/fac628d3049fd0e2422cb.jpg' }, caption: `
+ *Jadi Bot*
+ Scan QR segera...
+ Jangan Lama Lama...
+ 20 detik QR Akan Expired.
+ 
+ Hubungi Owner
+ Jika Gagal Scan QR
+ 👨‍💻~085624823115` }, { quoted: m })
+            } break
+
             case 'quotesanime': case 'quoteanime': {
 		let { quotesAnime } = require('./lib/scraper')
                 let anu = await quotesAnime()
